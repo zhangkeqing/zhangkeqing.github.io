@@ -81,13 +81,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/zhangkeqing/" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
 					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="mail" target="_blank" href="mailto:407066271@qq.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -124,13 +124,13 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/zhangkeqing/" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="mail" target="_blank" href="mailto:407066271@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -157,6 +157,74 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-github-Hexo-搭建个人博客（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/18/github-Hexo-搭建个人博客（一）/">github + Hexo 搭建个人博客（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/18/github-Hexo-搭建个人博客（一）/" class="archive-article-date">
+  	<time datetime="2017-03-18T06:13:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1. 环境配置"></a>1. 环境配置</h3><h4 id="1-1-安装Git环境"><a href="#1-1-安装Git环境" class="headerlink" title="1.1 安装Git环境"></a>1.1 安装Git环境</h4><blockquote>
+<p>可以查看 <a href="">Git安装使用</a></p>
+<h4 id="1-2-安装NodeJs环境"><a href="#1-2-安装NodeJs环境" class="headerlink" title="1.2 安装NodeJs环境"></a>1.2 安装NodeJs环境</h4><p>可以查看 <a href="">NodeJs安装使用</a></p>
+<h3 id="2-环境配置好以后，可以进行博客的搭建了"><a href="#2-环境配置好以后，可以进行博客的搭建了" class="headerlink" title="2. 环境配置好以后，可以进行博客的搭建了"></a>2. 环境配置好以后，可以进行博客的搭建了</h3><h4 id="2-1-安装Hexo"><a href="#2-1-安装Hexo" class="headerlink" title="2.1 安装Hexo"></a>2.1 安装Hexo</h4><p>首先在系统中创建一个Hexo目录<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># -p 表示递归创建目录</span></div><div class="line">$ mkdir -p /<span class="class"><span class="keyword">data</span>/hexo/</span></div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>然后进入目录，安装hexo环境：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>cd /data/hexo/</div><div class="line"><span class="variable">$ </span>npm install hexo-cli -g</div><div class="line"><span class="comment"># 初始化hexo</span></div><div class="line"><span class="variable">$ </span>hexo init hexo <span class="comment"># 如果已经存在 hexo 目录，则直接使用 hexo init 命令就可以了</span></div><div class="line"><span class="variable">$ </span>cd hexo</div><div class="line"><span class="comment"># 安装生成器</span></div><div class="line"><span class="variable">$ </span>npm install</div><div class="line"><span class="variable">$ </span>hexo </div><div class="line"><span class="variable">$ </span>hexo g <span class="comment"># 或者hexo generate  生成</span></div><div class="line"><span class="variable">$ </span>hexo s <span class="comment"># 启动本地web服务器 server，可以在http://localhost:4000/ 查看</span></div></pre></td></tr></table></figure></p>
+<p>这里有必要提下Hexo常用的几个命令：</p>
+<blockquote>
+<ol>
+<li>hexo generate (hexo g) 生成静态文件，会在当前目录下生成一个新的叫做public的文件夹</li>
+<li>hexo server (hexo s) 启动本地web服务，用于博客的预览</li>
+<li>hexo deploy (hexo d) 部署播客到远端（比如github, heroku等平台）<br>另外还有其他几个常用命令：<figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">new</span> <span class="string">"postName"</span> <span class="meta">#新建文章</span></div><div class="line">$ hexo <span class="keyword">new</span> page <span class="string">"pageName"</span> <span class="meta">#新建页面</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p>常用简写:<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo n == hexo <span class="keyword">new</span></div><div class="line">$ hexo g == hexo <span class="keyword">generate</span></div><div class="line">$ hexo s == hexo server</div><div class="line">$ hexo d == hexo deploy</div></pre></td></tr></table></figure></p>
+<p>常用组合：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo d -g <span class="comment">#生成部署</span></div><div class="line"><span class="variable">$ </span>hexo s -g <span class="comment">#生成预览</span></div></pre></td></tr></table></figure></p>
+<p>现在我们打开<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 已经可以看到一篇内置的blog了。<br><img src="http://note.youdao.com/yws/api/personal/file/B488800CB9AE42239D0B66520C2BFFF8?method=download&amp;shareKey=9c602e4f078d3451520e07ba2912210c" alt="图片"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/18/github-Hexo-搭建个人博客（一）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
