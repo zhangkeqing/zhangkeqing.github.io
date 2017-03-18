@@ -158,6 +158,115 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-github-Hexo-搭建个人博客（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/18/github-Hexo-搭建个人博客（三）/">github + Hexo 搭建个人博客（三）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/18/github-Hexo-搭建个人博客（三）/" class="archive-article-date">
+  	<time datetime="2017-03-18T06:22:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先我们在以前已经安装，并配置好Hexo了，现在看看如何部署到github中</p>
+<h3 id="1-Hexo-博客部署"><a href="#1-Hexo-博客部署" class="headerlink" title="1. Hexo 博客部署"></a>1. Hexo 博客部署</h3><h4 id="1-1-config-yml-配置文件中的配置"><a href="#1-1-config-yml-配置文件中的配置" class="headerlink" title="1.1 _config.yml 配置文件中的配置"></a>1.1 _config.yml 配置文件中的配置</h4><p>之前我们已经配置过了：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># Deployment</span></div><div class="line"><span class="meta">## Docs: https:<span class="comment">//hexo.io/docs/deployment.html</span></span></div><div class="line"><span class="symbol">deploy:</span></div><div class="line"><span class="symbol">  type:</span> git</div><div class="line"><span class="symbol">  repository:</span> git@github.com<span class="meta-keyword">/zhangkeqing/</span>zhangkeqing.github.io.git</div><div class="line"><span class="symbol">  branch:</span> master</div></pre></td></tr></table></figure></p>
+<h4 id="1-2-部署之前需要安装一个hexo-git扩展"><a href="#1-2-部署之前需要安装一个hexo-git扩展" class="headerlink" title="1.2 部署之前需要安装一个hexo git扩展"></a>1.2 部署之前需要安装一个hexo git扩展</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install hexo-deployer-git --save</div><div class="line"></div><div class="line"><span class="comment">#执行下面命令就可以部署了</span></div><div class="line"><span class="variable">$ </span>hexo d -g</div></pre></td></tr></table></figure>
+<p>但是在实际执行过程中遇到了错误<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">FATAL fatal: <span class="string">'git@github.com/zhangkeqing/zhangkeqing.github.io.git'</span> does <span class="keyword">not</span> appear <span class="built_in">to</span> be <span class="keyword">a</span> git repository</div></pre></td></tr></table></figure></p>
+<p>错误原因：<br>将 “git@” 改为 “<a href="https://&quot;就对啦" target="_blank" rel="external">https://&quot;就对啦</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/18/github-Hexo-搭建个人博客（三）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-github-Hexo-搭建个人博客（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/18/github-Hexo-搭建个人博客（二）/">github + Hexo 搭建个人博客（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/18/github-Hexo-搭建个人博客（二）/" class="archive-article-date">
+  	<time datetime="2017-03-18T06:22:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Hexo-主题设置"><a href="#1-Hexo-主题设置" class="headerlink" title="1. Hexo 主题设置"></a>1. Hexo 主题设置</h3><h4 id="1-1-首先要安装主题"><a href="#1-1-首先要安装主题" class="headerlink" title="1.1 首先要安装主题"></a>1.1 首先要安装主题</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo clean</div><div class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/litten</span><span class="regexp">/hexo-theme-yilia.git themes/yilia</span></div></pre></td></tr></table></figure>
+<h4 id="1-2-在我们创建的hexo目录中找到-config-yml-文件，进行配置："><a href="#1-2-在我们创建的hexo目录中找到-config-yml-文件，进行配置：" class="headerlink" title="1.2 在我们创建的hexo目录中找到 _config.yml 文件，进行配置："></a>1.2 在我们创建的hexo目录中找到 _config.yml 文件，进行配置：</h4><p>将 theme 配置项设置为 yilia<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#博客名称</span></div><div class="line"><span class="attr">title:</span> <span class="string">我的博客</span></div><div class="line"><span class="comment">#副标题</span></div><div class="line"><span class="attr">subtitle:</span> <span class="string">一天进步一点</span></div><div class="line"><span class="comment">#简介</span></div><div class="line"><span class="attr">description:</span> <span class="string">记录生活点滴</span></div><div class="line"><span class="comment">#博客作者</span></div><div class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span></div><div class="line"><span class="comment">#博客语言</span></div><div class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></div><div class="line"><span class="comment">#时区</span></div><div class="line"><span class="attr">timezone:</span></div><div class="line"></div><div class="line"><span class="comment">#博客地址,与申请的GitHub一致</span></div><div class="line"><span class="attr">url:</span> <span class="attr">http://zhangkeqing.github.io</span></div><div class="line"><span class="attr">root:</span> <span class="string">/</span></div><div class="line"><span class="comment">#博客链接格式</span></div><div class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></div><div class="line"><span class="attr">permalink_defaults:</span></div><div class="line"></div><div class="line"><span class="attr">source_dir:</span> <span class="string">source</span></div><div class="line"><span class="attr">public_dir:</span> <span class="string">public</span></div><div class="line"><span class="attr">tag_dir:</span> <span class="string">tags</span></div><div class="line"><span class="attr">archive_dir:</span> <span class="string">archives</span></div><div class="line"><span class="attr">category_dir:</span> <span class="string">categories</span></div><div class="line"><span class="attr">code_dir:</span> <span class="string">downloads/code</span></div><div class="line"><span class="attr">i18n_dir:</span> <span class="string">:lang</span></div><div class="line"><span class="attr">skip_render:</span></div><div class="line"></div><div class="line"><span class="attr">new_post_name:</span> <span class="string">:title.md</span> <span class="comment"># File name of new posts</span></div><div class="line"><span class="attr">default_layout:</span> <span class="string">post</span></div><div class="line"><span class="attr">titlecase:</span> <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></div><div class="line"><span class="attr">external_link:</span> <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></div><div class="line"><span class="attr">filename_case:</span> <span class="number">0</span></div><div class="line"><span class="attr">render_drafts:</span> <span class="literal">false</span></div><div class="line"><span class="attr">post_asset_folder:</span> <span class="literal">false</span></div><div class="line"><span class="attr">relative_link:</span> <span class="literal">false</span></div><div class="line"><span class="attr">future:</span> <span class="literal">true</span></div><div class="line"><span class="attr">highlight:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  line_number:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  auto_detect:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  tab_replace:</span></div><div class="line"></div><div class="line"><span class="attr">default_category:</span> <span class="string">uncategorized</span></div><div class="line"><span class="attr">category_map:</span></div><div class="line"><span class="attr">tag_map:</span></div><div class="line"></div><div class="line"><span class="comment">#日期格式</span></div><div class="line"><span class="attr">date_format:</span> <span class="string">YYYY-MM-DD</span></div><div class="line"><span class="attr">time_format:</span> <span class="attr">HH:mm:ss</span></div><div class="line"></div><div class="line"><span class="comment">#分页，每页文章数量</span></div><div class="line"><span class="attr">per_page:</span> <span class="number">10</span></div><div class="line"><span class="attr">pagination_dir:</span> <span class="string">page</span></div><div class="line"></div><div class="line"><span class="comment">#博客主题，默认主题（landscape）</span></div><div class="line"><span class="attr">theme:</span> <span class="string">yilia</span></div><div class="line"></div><div class="line"><span class="comment">#发布设置</span></div><div class="line"><span class="attr">deploy:</span> </div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line">  <span class="comment">#elfwalk改为你的github用户名</span></div><div class="line"><span class="attr">  repository:</span> <span class="string">git@github.com/zhangkeqing/zhangkeqing.github.io.git</span></div><div class="line"><span class="attr">  branch:</span> <span class="string">master</span></div></pre></td></tr></table></figure></p>
+<p>Repository：必须是SSH形式的url（git@github.com:zhchnchn/zhchnchn.github.io.git），而不能是HTTPS形式的url（<a href="https://github.com/zhchnchn/zhchnchn.github.io.git），否则会出现错误：" target="_blank" rel="external">https://github.com/zhchnchn/zhchnchn.github.io.git），否则会出现错误：</a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div><div class="line">[info] <span class="keyword">Start</span> deploying: github</div><div class="line">[<span class="keyword">error</span>] https://github.com/zhangkeqing/zhangkeqing.github.io.git <span class="keyword">is</span> <span class="keyword">not</span> a valid repositor <span class="keyword">URL</span>!</div></pre></td></tr></table></figure></p>
+<p>使用SSH url，如果电脑没有开放SSH 端口，会致部署失败。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fatal: Could <span class="keyword">not</span> <span class="built_in">read</span> <span class="built_in">from</span> remote repository.</div><div class="line"></div><div class="line">Please make sure you have <span class="keyword">the</span> correct access rights</div><div class="line"><span class="keyword">and</span> <span class="keyword">the</span> repository exists.</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/18/github-Hexo-搭建个人博客（二）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Git安装使用（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
