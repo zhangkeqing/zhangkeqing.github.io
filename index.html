@@ -158,6 +158,225 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-redis-学习（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/redis-学习（三）/">redis 学习（三）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/21/redis-学习（三）/" class="archive-article-date">
+  	<time datetime="2017-03-21T10:46:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="redis集群节点的动态配置"><a href="#redis集群节点的动态配置" class="headerlink" title="redis集群节点的动态配置"></a>redis集群节点的动态配置</h1><h3 id="1-集群几点的增加"><a href="#1-集群几点的增加" class="headerlink" title="1. 集群几点的增加"></a>1. 集群几点的增加</h3><p>上一节中我们只集群了两台机器中的节点192.168.1.107 和 192.168.1.108，还剩下一台中的三个节点，我们要将其加入节点中 192.168.1.109</p>
+<p>首先我们要保证节点都是启动状态<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 进入节点目录</span></div><div class="line"><span class="variable">$ </span>cd /usr/local/redis_cluster/</div><div class="line"><span class="comment"># 启动节点</span></div><div class="line"><span class="variable">$ </span>redis-server <span class="number">7006</span>/redis.conf</div><div class="line"><span class="variable">$ </span>redis-server <span class="number">7007</span>/redis.conf</div><div class="line"><span class="variable">$ </span>redis-server <span class="number">7008</span>/redis.conf</div></pre></td></tr></table></figure></p>
+<p>执行以下命令，将这个新节点添加到集群中<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ /usr/local/redis/src/redis-trib.rb<span class="built_in"> add-node </span>192.168.1.109:7006 192.168.1.107:7000</div><div class="line"><span class="comment"># 执行下面命令查看刚才新增的节点</span></div><div class="line">$ redis-cli -c -h 192.168.1.107 -p 7000 cluster nodes</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/03/21/redis-学习（三）/4.png" alt="图片"><br><img src="/2017/03/21/redis-学习（三）/5.png" alt="图片"><br>接下来把剩下的两个节点也加入集群中,并查看结果<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ /usr/local/redis/src/redis-trib.rb<span class="built_in"> add-node </span>192.168.1.109:7007 192.168.1.107:7000</div><div class="line">$ /usr/local/redis/src/redis-trib.rb<span class="built_in"> add-node </span>192.168.1.109:7008 192.168.1.107:7000</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/03/21/redis-学习（三）/6.png" alt="图片"><br>增加了新的节点之后发现，这些新的节点默认都是master主节点<br>我们将192.168.1.109:7007设为主节点，192.168.1.109:7006,192.168.1.109:7008作为7007的从节点<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ redis-<span class="keyword">cli</span> -c -h <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.109</span> -p <span class="number">7006</span> cluster replicate 4e26a7ddofed041b676ee05686cafff6343bffd</div><div class="line">$ redis-<span class="keyword">cli</span> -c -h <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.109</span> -p <span class="number">7007</span> cluster replicate 4e26a7ddofed041b676ee05686cafff6343bffd</div><div class="line">#在这个命令中前面的-h 和 -p 表示将该节点作为从节点，后面的那个ID则是主节点<span class="number">192.168</span><span class="meta">.1</span><span class="meta">.109</span>:<span class="number">7007</span>的ID</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/03/21/redis-学习（三）/7.png" alt="图片"></p>
+<p>查看结果</p>
+<p><img src="/2017/03/21/redis-学习（三）/8.png" alt="图片"></p>
+<p>我们发现新增的192.168.1.109：7007主节点中没有哈希槽，我们需要进行分配：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="regexp">/usr/</span>local<span class="regexp">/redis/</span>src<span class="regexp">/redis-trib.rb reshard 192.168.1.107:7000</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2017/03/21/redis-学习（三）/9.png" alt="图片"><br><img src="/2017/03/21/redis-学习（三）/10.png" alt="图片"><br><img src="/2017/03/21/redis-学习（三）/11.png" alt="图片"><br><img src="/2017/03/21/redis-学习（三）/12.png" alt="图片"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">redis,redis集群，redis集群配置</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/21/redis-学习（三）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-redis-学习（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/redis-学习（二）/">redis 学习（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/21/redis-学习（二）/" class="archive-article-date">
+  	<time datetime="2017-03-21T10:46:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="redis-集群安装"><a href="#redis-集群安装" class="headerlink" title="redis 集群安装"></a>redis 集群安装</h1><h3 id="1-集群环境"><a href="#1-集群环境" class="headerlink" title="1. 集群环境"></a>1. 集群环境</h3><p>我准备将redis安装在三台机器上：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.107</span></div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.108</span></div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.109</span></div></pre></td></tr></table></figure></p>
+<p>我是在用VirtualBox本地建立了三个CentOS7虚拟机</p>
+<h3 id="2-安装redis"><a href="#2-安装redis" class="headerlink" title="2. 安装redis"></a>2. 安装redis</h3><h4 id="2-1-分别在三台机器中安装resia"><a href="#2-1-分别在三台机器中安装resia" class="headerlink" title="2.1 分别在三台机器中安装resia"></a>2.1 分别在三台机器中安装resia</h4><p>首先在 192.168.1.107 中安装，并创建节点<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local</div><div class="line"><span class="comment">#创建节点安装目录</span></div><div class="line">$ mkdir redis_cluster</div><div class="line"><span class="comment"># 解压</span></div><div class="line">$ tar -zxvf redis-<span class="number">3.2</span>.<span class="number">8</span>.tar.gz</div><div class="line"><span class="comment"># 重命名</span></div><div class="line">$ mv redis-<span class="number">3.2</span>.<span class="number">8</span>/ redis</div><div class="line">$ cd redis/</div><div class="line"><span class="comment"># 安装</span></div><div class="line">$ make install PREFIX=<span class="regexp">/usr/local</span><span class="regexp">/redis_cluster</span></div><div class="line">$ cd ../redis_cluster</div><div class="line"><span class="comment"># 此时目录下有bin目录，同时查看/usr/local/bin下面是否存在redis相关文件，如果没有则复制bin下的问下到/usr/local/bin目录中</span></div><div class="line">$ cp bin/* <span class="regexp">/usr/local</span><span class="regexp">/bin</span></div><div class="line"># 创建redis节点</div><div class="line">$ mkdir 7000 7001 7002</div><div class="line">#复制redis.conf到节点下</div><div class="line">$ cp /usr<span class="regexp">/local/redis</span><span class="regexp">/redis.conf ./</span><span class="number">7000</span>/</div><div class="line">$ cp /usr/local/redis/redis.conf ./<span class="number">7001</span>/</div><div class="line">$ cp /usr/local/redis/redis.conf ./<span class="number">7002</span>/</div><div class="line"><span class="comment"># 修改对应配置</span></div><div class="line"><span class="comment"># 对redis.conf进行配置</span></div><div class="line">daemonize    yes                          /<span class="regexp">/redis后台运行</span></div><div class="line">pidfile  /var<span class="regexp">/run/redis</span>_7000.pid          /<span class="regexp">/pidfile文件对应7000,7001,7002</span></div><div class="line">bind 192.168.1.107                        /<span class="regexp">/ 如果不进行多机器集群搭建 可以不配置</span></div><div class="line">port  7000                                /<span class="regexp">/端口7000,7001,7002</span></div><div class="line">cluster-enabled  yes                      /<span class="regexp">/开启集群  把注释#去掉</span></div><div class="line">cluster-config-file  nodes_7000.conf      /<span class="regexp">/集群的配置  配置文件首次启动自动生成 7000,7001,7002</span></div><div class="line">cluster-node-timeout  5000                /<span class="regexp">/请求超时  设置5秒够了</span></div><div class="line">appendonly  yes                           /<span class="regexp">/aof日志开启  有需要就开启，它会每次写操作都记录一条日志</span></div></pre></td></tr></table></figure></p>
+<p>同时在 192.168.1.108 和 192.168.1.109 两台机器中分别配置节点：7003、7004、7005 和 7006、7007、7008 总共九个节点，并进行相关配置</p>
+<blockquote>
+<p>==这里要注意：在搭建redis集群是必须保证节点在三个以上才可以==</p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 分别启动三台机器中的redis节点</span></div><div class="line">cd <span class="regexp">/usr/</span>local</div><div class="line">redis-server  redis_cluster<span class="regexp">/7000/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7001/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7002/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7003/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7004/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7005/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7006/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7007/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7008/</span>redis.conf</div><div class="line"><span class="comment"># 在哪个目录下启动节点，就会在在那个目录中生成相关的文件，查看/usr/local/目录的文件</span></div></pre></td></tr></table></figure>
+<h4 id="2-2-集群搭建"><a href="#2-2-集群搭建" class="headerlink" title="2.2 集群搭建"></a>2.2 集群搭建</h4><p>前面已经准备好了搭建集群的redis节点，接下来我们要把这些节点都串连起来搭建集群。官方提供了一个工具：redis-trib.rb(/usr/local/redis-3.2.8/src/redis-trib.rb) 看后缀就知道这鸟东西不能直接执行，它是用ruby写的一个程序，所以我们还得安装ruby.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y <span class="keyword">install</span> ruby ruby-devel rubygems rpm-<span class="keyword">build</span></div></pre></td></tr></table></figure></p>
+<p>再用 gem 这个命令来安装 redis接口    gem是ruby的一个工具包.<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ gem install redis    <span class="comment">//需要等一段时间</span></div><div class="line"><span class="meta"># 当然，方便操作，三台机器都要安装。</span></div></pre></td></tr></table></figure></p>
+<p>上面安装完成后就可以执行集群的程序了redis-trib.rb<br>确认所有的节点都启动，接下来使用参数create 创建 (在192.168.1.107中来创建)<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/local/redis/src/redis-trib.rb create --replicas <span class="number">1</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.107</span>:<span class="number">7000</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.107</span>:<span class="number">7001</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.107</span>:<span class="number">7002</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.108</span>:<span class="number">7003</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.108</span>:<span class="number">7004</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.108</span>:<span class="number">7005</span></div></pre></td></tr></table></figure></p>
+<p>查看结果</p>
+<p><img src="/2017/03/21/redis-学习（二）/1.png" alt="图片"></p>
+<p><img src="/2017/03/21/redis-学习（二）/2.png" alt="图片"></p>
+<p>这里我们先只集群两台机器上的redis,剩下一台中的节点接下来使用。</p>
+<blockquote>
+<p>参数解释： –replicas  1  表示 自动为每一个master节点分配一个slave节点    上面有6个节点，程序会按照一定规则生成 3个master（主）3个slave(从)</p>
+</blockquote>
+<pre><code>前面已经提醒过的 防火墙一定要开放监听的端口，否则会创建失败。
+</code></pre><p>最后查看结果，redis集群已经安装成功</p>
+<p><img src="/2017/03/21/redis-学习（二）/3.png" alt="图片"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis,redis集群搭建</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/21/redis-学习（二）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-redis-学习（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/redis-学习（一）/">redis 学习（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/21/redis-学习（一）/" class="archive-article-date">
+  	<time datetime="2017-03-21T10:46:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-安装"><a href="#Redis-安装" class="headerlink" title="Redis 安装"></a>Redis 安装</h1><h3 id="1-redis下载"><a href="#1-redis下载" class="headerlink" title="1. redis下载"></a>1. redis下载</h3><p>首先去 <a href="https://redis.io/" target="_blank" rel="external">redis： https://redis.io/</a> 官网下在redis软件，我安装使用的是最新稳定版<code>redis-3.2.8</code><br>下载链接：<a href="http://download.redis.io/releases/redis-3.2.8.tar.gz" target="_blank" rel="external">http://download.redis.io/releases/redis-3.2.8.tar.gz</a></p>
+<h3 id="2-redis-安装"><a href="#2-redis-安装" class="headerlink" title="2. redis 安装"></a>2. redis 安装</h3><p>由于电脑是Windows的，想要使用Linux系统只能装虚拟记录，我的博客前面有介绍VirtualBox安装CentOS7，这里就不再多描述了。<br>直接进行安装：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#首先把下载好的安装包拷贝到/usr/local/下</span></div><div class="line">cp redis-3.2.8 /usr/<span class="built_in">local</span>/ </div><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</div><div class="line"><span class="comment">#然后解压redis-3.2.8</span></div><div class="line">tar -zxvf redis-3.2.8.tar.gz</div><div class="line"><span class="comment">#重命名</span></div><div class="line">mv redis-3.2.8/ redis</div><div class="line"><span class="comment"># 创建redis编译安装目录</span></div><div class="line">mkdir redis_cluster</div><div class="line"><span class="comment"># 将redis安装到刚才创建好的redis_cluster目录中</span></div><div class="line"><span class="comment">#（这里也可以不选择，使用默认安装目录也可以，默认目录就是redis报下面会生成一个‘bin’目录）</span></div><div class="line"><span class="comment"># 进入redis目录进行编译安装</span></div><div class="line"><span class="built_in">cd</span> redis/</div><div class="line">make install PREFIX=/usr/<span class="built_in">local</span>/redis_cluster/</div><div class="line"><span class="comment">#上一步执行完毕后表示安装成功，但是官方推荐使用 make test 命令测试，是否真的安装成功</span></div><div class="line">make <span class="built_in">test</span></div><div class="line"><span class="comment">#完成上述步骤说明没有报错说明redis已经安装成功。</span></div></pre></td></tr></table></figure></p>
+<p>当然在安装过程中可能遇到不能编译的问题，则需要安装gcc环境<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install gcc</div><div class="line">yum install gcc-c++</div></pre></td></tr></table></figure></p>
+<h3 id="3-下面进行redis-运行测试安装"><a href="#3-下面进行redis-运行测试安装" class="headerlink" title="3. 下面进行redis 运行测试安装"></a>3. 下面进行redis 运行测试安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在redis_cluster中创建7000，7001，7002,</span></div><div class="line">mkdir -p /usr/<span class="built_in">local</span>/redis_cluster/7000</div><div class="line">mkdir -p /usr/<span class="built_in">local</span>/redis_cluster/7001</div><div class="line">mkdir -p /usr/<span class="built_in">local</span>/redis_cluster/7002</div><div class="line"></div><div class="line"><span class="comment"># 然后拷贝redis目录中redis.conf配置文件分别到新创建的三个目录中</span></div><div class="line">cp /usr/<span class="built_in">local</span>/redis/redis.conf /usr/<span class="built_in">local</span>/redis_cluster/7000/</div><div class="line">cp /usr/<span class="built_in">local</span>/redis/redis.conf /usr/<span class="built_in">local</span>/redis_cluster/7001/</div><div class="line">cp /usr/<span class="built_in">local</span>/redis/redis.conf /usr/<span class="built_in">local</span>/redis_cluster/7002/</div><div class="line"><span class="comment"># 对redis.conf进行配置</span></div><div class="line">daemonize    yes                          //redis后台运行</div><div class="line">pidfile  /var/run/redis_7000.pid          //pidfile文件对应7000,7001,7002</div><div class="line"><span class="built_in">bind</span> 192.168.1.107                        // 如果不进行多机器集群搭建 可以不配置</div><div class="line">port  7000                                //端口7000,7001,7002</div><div class="line">cluster-enabled  yes                      //开启集群  把注释<span class="comment">#去掉</span></div><div class="line">cluster-config-file  nodes_7000.conf      //集群的配置  配置文件首次启动自动生成 7000,7001,7002</div><div class="line">cluster-node-timeout  5000                //请求超时  设置5秒够了</div><div class="line">appendonly  yes                           //aof日志开启  有需要就开启，它会每次写操作都记录一条日志</div><div class="line"><span class="comment"># 最后执行下面命令运行redis,</span></div><div class="line"><span class="comment">#当然运行执行还要先查看/usr/local/bin目录中是否存在redis-server等redis的相关文件，</span></div><div class="line"><span class="comment">#如果没有，可以将刚才安装到redis_cluster目录的的bin目录下的文件复制到/usr/local/bin/下面</span></div><div class="line">redis-server /usr/<span class="built_in">local</span>/redis_cluster/7000/redis.conf</div><div class="line">redis-server /usr/<span class="built_in">local</span>/redis_cluster/7001/redis.conf</div><div class="line">redis-server /usr/<span class="built_in">local</span>/redis_cluster/7002/redis.conf</div><div class="line"><span class="comment">#使用下面命令查看redis是否运行成功</span></div><div class="line">ps -ef|grep redis</div><div class="line"><span class="comment">#结果</span></div><div class="line">root      2326     1  0 18:15 ?        00:00:25 redis-server 192.168.1.107:7000 [cluster]</div><div class="line">root      2330     1  0 18:16 ?        00:00:26 redis-server 192.168.1.107:7001 [cluster]</div><div class="line">root      2334     1  0 18:16 ?        00:00:21 redis-server 192.168.1.107:7002 [cluster]</div><div class="line"><span class="comment">#说明redis已经安装并运行成功</span></div></pre></td></tr></table></figure>
+<p>下一节，我将会进行redis多机器集群的搭建</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis,redis环境搭建</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/21/redis-学习（一）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-github-Hexo-搭建个人博客（四）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -616,6 +835,18 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis,redis环境搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis,redis集群搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">redis,redis集群，redis集群配置</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

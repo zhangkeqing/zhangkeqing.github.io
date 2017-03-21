@@ -6,17 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 张可庆的博客</title>
+  <title>redis 学习（二） | 张可庆的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技术的点滴记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="张可庆的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="redis 集群安装1. 集群环境我准备将redis安装在三台机器上：123192.168.1.107192.168.1.108192.168.1.109
+我是在用VirtualBox本地建立了三个CentOS7虚拟机
+2. 安装redis2.1 分别在三台机器中安装resia首先在 192.168.1.107 中安装，并创建节点1234567891011121314151617181920212">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis 学习（二）">
+<meta property="og:url" content="http://yoursite.com/2017/03/21/redis-学习（二）/index.html">
 <meta property="og:site_name" content="张可庆的博客">
-<meta property="og:description" content="技术的点滴记录">
+<meta property="og:description" content="redis 集群安装1. 集群环境我准备将redis安装在三台机器上：123192.168.1.107192.168.1.108192.168.1.109
+我是在用VirtualBox本地建立了三个CentOS7虚拟机
+2. 安装redis2.1 分别在三台机器中安装resia首先在 192.168.1.107 中安装，并创建节点1234567891011121314151617181920212">
+<meta property="og:image" content="http://yoursite.com/2017/03/21/redis-学习（二）/1.png">
+<meta property="og:image" content="http://yoursite.com/2017/03/21/redis-学习（二）/2.png">
+<meta property="og:image" content="http://yoursite.com/2017/03/21/redis-学习（二）/3.png">
+<meta property="og:updated_time" content="2017-03-21T10:50:48.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="张可庆的博客">
-<meta name="twitter:description" content="技术的点滴记录">
+<meta name="twitter:title" content="redis 学习（二）">
+<meta name="twitter:description" content="redis 集群安装1. 集群环境我准备将redis安装在三台机器上：123192.168.1.107192.168.1.108192.168.1.109
+我是在用VirtualBox本地建立了三个CentOS7虚拟机
+2. 安装redis2.1 分别在三台机器中安装resia首先在 192.168.1.107 中安装，并创建节点1234567891011121314151617181920212">
+<meta name="twitter:image" content="http://yoursite.com/2017/03/21/redis-学习（二）/1.png">
   
     <link rel="alternative" href="/atom.xml" title="张可庆的博客" type="application/atom+xml">
   
@@ -156,74 +167,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-redis-学习（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/21/redis-学习（三）/" class="archive-article-date">
-  	<time datetime="2017-03-21T10:46:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/21/redis-学习（三）/">redis 学习（三）</a>
+    <h1 class="article-title" itemprop="name">
+      redis 学习（二）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">redis,redis集群，redis集群配置</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/21/redis-学习（二）/" class="archive-article-date">
+        
+        <a href="/2017/03/21/redis-学习（二）/" class="archive-article-date">
   	<time datetime="2017-03-21T10:46:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/21/redis-学习（二）/">redis 学习（二）</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="redis-集群安装"><a href="#redis-集群安装" class="headerlink" title="redis 集群安装"></a>redis 集群安装</h1><h3 id="1-集群环境"><a href="#1-集群环境" class="headerlink" title="1. 集群环境"></a>1. 集群环境</h3><p>我准备将redis安装在三台机器上：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.107</span></div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.108</span></div><div class="line">192<span class="selector-class">.168</span><span class="selector-class">.1</span><span class="selector-class">.109</span></div></pre></td></tr></table></figure></p>
+<p>我是在用VirtualBox本地建立了三个CentOS7虚拟机</p>
+<h3 id="2-安装redis"><a href="#2-安装redis" class="headerlink" title="2. 安装redis"></a>2. 安装redis</h3><h4 id="2-1-分别在三台机器中安装resia"><a href="#2-1-分别在三台机器中安装resia" class="headerlink" title="2.1 分别在三台机器中安装resia"></a>2.1 分别在三台机器中安装resia</h4><p>首先在 192.168.1.107 中安装，并创建节点<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">$ cd /usr/local</div><div class="line"><span class="comment">#创建节点安装目录</span></div><div class="line">$ mkdir redis_cluster</div><div class="line"><span class="comment"># 解压</span></div><div class="line">$ tar -zxvf redis-<span class="number">3.2</span>.<span class="number">8</span>.tar.gz</div><div class="line"><span class="comment"># 重命名</span></div><div class="line">$ mv redis-<span class="number">3.2</span>.<span class="number">8</span>/ redis</div><div class="line">$ cd redis/</div><div class="line"><span class="comment"># 安装</span></div><div class="line">$ make install PREFIX=<span class="regexp">/usr/local</span><span class="regexp">/redis_cluster</span></div><div class="line">$ cd ../redis_cluster</div><div class="line"><span class="comment"># 此时目录下有bin目录，同时查看/usr/local/bin下面是否存在redis相关文件，如果没有则复制bin下的问下到/usr/local/bin目录中</span></div><div class="line">$ cp bin/* <span class="regexp">/usr/local</span><span class="regexp">/bin</span></div><div class="line"># 创建redis节点</div><div class="line">$ mkdir 7000 7001 7002</div><div class="line">#复制redis.conf到节点下</div><div class="line">$ cp /usr<span class="regexp">/local/redis</span><span class="regexp">/redis.conf ./</span><span class="number">7000</span>/</div><div class="line">$ cp /usr/local/redis/redis.conf ./<span class="number">7001</span>/</div><div class="line">$ cp /usr/local/redis/redis.conf ./<span class="number">7002</span>/</div><div class="line"><span class="comment"># 修改对应配置</span></div><div class="line"><span class="comment"># 对redis.conf进行配置</span></div><div class="line">daemonize    yes                          /<span class="regexp">/redis后台运行</span></div><div class="line">pidfile  /var<span class="regexp">/run/redis</span>_7000.pid          /<span class="regexp">/pidfile文件对应7000,7001,7002</span></div><div class="line">bind 192.168.1.107                        /<span class="regexp">/ 如果不进行多机器集群搭建 可以不配置</span></div><div class="line">port  7000                                /<span class="regexp">/端口7000,7001,7002</span></div><div class="line">cluster-enabled  yes                      /<span class="regexp">/开启集群  把注释#去掉</span></div><div class="line">cluster-config-file  nodes_7000.conf      /<span class="regexp">/集群的配置  配置文件首次启动自动生成 7000,7001,7002</span></div><div class="line">cluster-node-timeout  5000                /<span class="regexp">/请求超时  设置5秒够了</span></div><div class="line">appendonly  yes                           /<span class="regexp">/aof日志开启  有需要就开启，它会每次写操作都记录一条日志</span></div></pre></td></tr></table></figure></p>
+<p>同时在 192.168.1.108 和 192.168.1.109 两台机器中分别配置节点：7003、7004、7005 和 7006、7007、7008 总共九个节点，并进行相关配置</p>
+<blockquote>
+<p>==这里要注意：在搭建redis集群是必须保证节点在三个以上才可以==</p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 分别启动三台机器中的redis节点</span></div><div class="line">cd <span class="regexp">/usr/</span>local</div><div class="line">redis-server  redis_cluster<span class="regexp">/7000/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7001/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7002/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7003/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7004/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7005/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7006/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7007/</span>redis.conf</div><div class="line">redis-server  redis_cluster<span class="regexp">/7008/</span>redis.conf</div><div class="line"><span class="comment"># 在哪个目录下启动节点，就会在在那个目录中生成相关的文件，查看/usr/local/目录的文件</span></div></pre></td></tr></table></figure>
+<h4 id="2-2-集群搭建"><a href="#2-2-集群搭建" class="headerlink" title="2.2 集群搭建"></a>2.2 集群搭建</h4><p>前面已经准备好了搭建集群的redis节点，接下来我们要把这些节点都串连起来搭建集群。官方提供了一个工具：redis-trib.rb(/usr/local/redis-3.2.8/src/redis-trib.rb) 看后缀就知道这鸟东西不能直接执行，它是用ruby写的一个程序，所以我们还得安装ruby.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y <span class="keyword">install</span> ruby ruby-devel rubygems rpm-<span class="keyword">build</span></div></pre></td></tr></table></figure></p>
+<p>再用 gem 这个命令来安装 redis接口    gem是ruby的一个工具包.<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ gem install redis    <span class="comment">//需要等一段时间</span></div><div class="line"><span class="meta"># 当然，方便操作，三台机器都要安装。</span></div></pre></td></tr></table></figure></p>
+<p>上面安装完成后就可以执行集群的程序了redis-trib.rb<br>确认所有的节点都启动，接下来使用参数create 创建 (在192.168.1.107中来创建)<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/local/redis/src/redis-trib.rb create --replicas <span class="number">1</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.107</span>:<span class="number">7000</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.107</span>:<span class="number">7001</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.107</span>:<span class="number">7002</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.108</span>:<span class="number">7003</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.108</span>:<span class="number">7004</span> <span class="number">192.168</span><span class="meta">.1</span><span class="meta">.108</span>:<span class="number">7005</span></div></pre></td></tr></table></figure></p>
+<p>查看结果</p>
+<p><img src="/2017/03/21/redis-学习（二）/1.png" alt="图片"></p>
+<p><img src="/2017/03/21/redis-学习（二）/2.png" alt="图片"></p>
+<p>这里我们先只集群两台机器上的redis,剩下一台中的节点接下来使用。</p>
+<blockquote>
+<p>参数解释： –replicas  1  表示 自动为每一个master节点分配一个slave节点    上面有6个节点，程序会按照一定规则生成 3个master（主）3个slave(从)</p>
+</blockquote>
+<pre><code>前面已经提醒过的 防火墙一定要开放监听的端口，否则会创建失败。
+</code></pre><p>最后查看结果，redis集群已经安装成功</p>
+<p><img src="/2017/03/21/redis-学习（二）/3.png" alt="图片"></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -235,219 +248,97 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/21/redis-学习（二）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/21/redis-学习（一）/" class="archive-article-date">
-  	<time datetime="2017-03-21T10:46:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/21/redis-学习（一）/">redis 学习（一）</a>
-    </h1>
+    <a href="/2017/03/21/redis-学习（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          redis 学习（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/21/redis-学习（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis 学习（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis,redis环境搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/github-Hexo-搭建个人博客（四）/" class="archive-article-date">
-  	<time datetime="2017-03-20T09:42:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/github-Hexo-搭建个人博客（四）/">github + Hexo 搭建个人博客（四）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/github-Hexo-搭建个人博客（三）/" class="archive-article-date">
-  	<time datetime="2017-03-18T06:22:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/github-Hexo-搭建个人博客（三）/">github + Hexo 搭建个人博客（三）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/github-Hexo-搭建个人博客（二）/" class="archive-article-date">
-  	<time datetime="2017-03-18T06:22:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/github-Hexo-搭建个人博客（二）/">github + Hexo 搭建个人博客（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/Git安装使用（一）/" class="archive-article-date">
-  	<time datetime="2017-03-18T06:19:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/Git安装使用（一）/">Git安装使用（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/github-Hexo-搭建个人博客（一）/" class="archive-article-date">
-  	<time datetime="2017-03-18T06:13:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/github-Hexo-搭建个人博客（一）/">github + Hexo 搭建个人博客（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/13/hello-world/" class="archive-article-date">
-  	<time datetime="2017-03-13T11:55:32.702Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -470,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
