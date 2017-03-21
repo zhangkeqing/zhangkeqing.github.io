@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-21T11:08:52.524Z</updated>
+  <updated>2017-03-21T11:14:01.128Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,17 +20,13 @@
     <link href="http://yoursite.com/2017/03/21/redis-%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/21/redis-学习（四）/</id>
     <published>2017-03-21T11:00:14.000Z</published>
-    <updated>2017-03-21T11:08:52.524Z</updated>
+    <updated>2017-03-21T11:14:01.128Z</updated>
     
-    <content type="html"><![CDATA[<iframe height="498" width="850" src="https://player.youku.com/embed/XMjY1MTk2NTA2OA==" frameborder="0" allowfullscreen></iframe>
-
-<embed src="https://player.youku.com/player.php/sid/XMjY1MTk2NTA2OA==/v.swf" allowfullscreen="true" quality="high" width="480" height="400" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash">]]></content>
+    <content type="html"><![CDATA[<iframe height="498" width="850" src="https://player.youku.com/embed/XMjY1MTk2NTA2OA==" frameborder="0" allowfullscreen></iframe>]]></content>
     
     <summary type="html">
     
       &lt;iframe height=&quot;498&quot; width=&quot;850&quot; src=&quot;https://player.youku.com/embed/XMjY1MTk2NTA2OA==&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-
-&lt;embed sr
     
     </summary>
     
