@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-21T10:53:37.494Z</updated>
+  <updated>2017-03-21T11:01:12.753Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis 学习（四）</title>
+    <link href="http://yoursite.com/2017/03/21/redis-%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/21/redis-学习（四）/</id>
+    <published>2017-03-21T11:00:14.000Z</published>
+    <updated>2017-03-21T11:01:12.753Z</updated>
+    
+    <content type="html"><![CDATA[<iframe height="498" width="510" src="http://player.youku.com/embed/XMjY1MTk2NTA2OA==" frameborder="0" 'allowfullscreen'=""></iframe>]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe height=&quot;498&quot; width=&quot;510&quot; src=&quot;http://player.youku.com/embed/XMjY1MTk2NTA2OA==&quot; frameborder=&quot;0&quot; &#39;allowfullscreen&#39;=&quot;&quot;&gt;&lt;/iframe&gt;
+    
+    </summary>
+    
+    
+      <category term="redis集群视频" scheme="http://yoursite.com/tags/redis%E9%9B%86%E7%BE%A4%E8%A7%86%E9%A2%91/"/>
+    
+  </entry>
   
   <entry>
     <title>redis 学习（三）</title>
