@@ -14,10 +14,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/20/github-Hexo-搭建个人博客（四）/index.html">
 <meta property="og:site_name" content="张可庆的博客">
 <meta property="og:description" content="hexo 各项基本配置1. hexo-yilia主题的配置详情1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889">
-<meta property="og:updated_time" content="2017-03-20T09:57:28.841Z">
+<meta property="og:image" content="http://yoursite.com/2017/03/20/github-Hexo-搭建个人博客（四）/1.png">
+<meta property="og:updated_time" content="2017-03-22T09:10:59.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github + Hexo 搭建个人博客（四）">
 <meta name="twitter:description" content="hexo 各项基本配置1. hexo-yilia主题的配置详情1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889">
+<meta name="twitter:image" content="http://yoursite.com/2017/03/20/github-Hexo-搭建个人博客（四）/1.png">
   
     <link rel="alternative" href="/atom.xml" title="张可庆的博客" type="application/atom+xml">
   
@@ -188,6 +190,13 @@
 <p>在全局配置文件_config.yml进行插件配置：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#插件配置</span></div><div class="line"><span class="symbol">plugins:</span> hexo-generator-feed </div><div class="line"><span class="meta">#- hexo-generator-sitemap </span></div><div class="line"><span class="symbol"></span></div><div class="line">feed:</div><div class="line"><span class="symbol">  type:</span> atom <span class="meta">##feed类型 atom或者rss2</span></div><div class="line"><span class="symbol">  path:</span> atom.xml <span class="meta">##feed路径</span></div><div class="line"><span class="symbol">  limit:</span> <span class="number">20</span>  <span class="meta">##feed文章最小数量</span></div></pre></td></tr></table></figure></p>
 <h3 id="3-开启标签页"><a href="#3-开启标签页" class="headerlink" title="3. 开启标签页"></a>3. 开启标签页</h3><p>如果不开启标签页，点击博客上的随笔功能将会报错<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">hexo</span> <span class="string">new</span> <span class="string">page</span> <span class="string">tags</span></div><div class="line"><span class="comment">#修改blog/source/tags/index.md</span></div><div class="line"><span class="attr">layout:</span> <span class="string">tags</span></div><div class="line"><span class="attr">comments:</span> <span class="literal">false</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure></p>
 <h3 id="4-开启分类页"><a href="#4-开启分类页" class="headerlink" title="4. 开启分类页"></a>4. 开启分类页</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">hexo</span> <span class="string">new</span> <span class="string">page</span> <span class="string">categories</span></div><div class="line"><span class="comment">#修改blog/source/categories/index.md</span></div><div class="line"><span class="attr">layout:</span> <span class="string">categories</span></div><div class="line"><span class="attr">comments:</span> <span class="literal">false</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure>
+<h3 id="5-域名配置"><a href="#5-域名配置" class="headerlink" title="5. 域名配置"></a>5. 域名配置</h3><p>首页要注册一个域名<br>我这里是在阿里云万网购买的</p>
+<p>首先在本地的hexo博客中的source目录下新建CNAME文件</p>
+<p>在文件中输入域名(域名前不用加http://)<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">zendsound</span><span class="selector-class">.cn</span></div></pre></td></tr></table></figure></p>
+<p>然后在阿里云中设置域名解析就可以了</p>
+<p><img src="/2017/03/20/github-Hexo-搭建个人博客（四）/1.png" alt="图片"></p>
+<p>在解析的时候需要设置IP，在这里你可以通过下面命令查看您的博客所在IP：<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">ping</span> 你的博客域名</div></pre></td></tr></table></figure></p>
+
       
 
       
